@@ -646,7 +646,7 @@ const DAYS = [
 
   rows:[
 
-    {type:'temple', num:'11番', name:'称名寺', addr:'横須賀市野比1丁目', stop:'YRP野比駅から徒歩', note:'三浦海岸から1駅。野比地区', fare:360},
+    {type:'temple', num:'11番', name:'称名寺', addr:'横須賀市野比1丁目', stop:'YRP野比駅から徒歩', note:'三浦海岸から1駅。野比地区', fare:1950},
 
     {type:'seg', mode:'京急', from:'都営地下鉄蓮根駅',  dep:0.42500, to:'YRP野比駅',          arr:0.43333},
 
@@ -726,8 +726,7 @@ const DAYS = [
 
     {type:'seg', mode:'バス',   from:'米ヶ浜 （バス停)',  dep:0.44792, to:'馬堀中学',        arr:0.46111},
 
-    {type:'temple', num:'18番', name:'満願寺', addr:'横須賀市岩戸1丁目', stop:'岩戸バス停', note:'佐原ICの北西。岩戸地区', fare:640},
-
+    
     {type:'seg', mode:'徒歩', from:'浄林寺 馬堀',  dep:0.48125, to:'馬堀海岸駅',          arr:0.48958},
 
     {type:'temple', num:'13番', name:'東福寺', addr:'横須賀市西浦賀町2丁目', stop:'浦賀駅から徒歩', note:'浦賀駅周辺。半島東側', fare:1260},
@@ -742,9 +741,9 @@ const DAYS = [
 
     {type:'seg', mode:'徒歩', from:'東福寺　西浦賀',  dep:0.38889, to:'真福寺　横須賀市吉井',            arr:0.40694},
 
-    {type:'seg', mode:'京急',   from:'馬堀海岸駅', dep:0.48958, to:'横須賀中央',     arr:0.49722},
+    {type:'temple', num:'18番', name:'満願寺', addr:'横須賀市岩戸1丁目', stop:'岩戸バス停', note:'佐原ICの北西。岩戸地区', fare:640},
 
-    {type:'seg', mode:'京急',   from:'横須賀中央', dep:0.50417, to:'北久里浜',     arr:0.50972},
+    {type:'seg', mode:'徒歩',   from:'真福寺　横須賀市吉井', dep:0.48958, to:'北久里浜駅',     arr:0.49722}
 
     {type:'seg', mode:'バス',   from:'北久里浜', dep:0.55556, to:'岩戸（バス）　横須賀市',           arr:0.55972},
 
@@ -812,7 +811,7 @@ const DAYS = [
 
     {type:'seg', mode:'徒歩', from:'関根御滝　横須賀市', dep:0.61806, to:'久留和　バス停',           arr:0.63194},
 
-     {type:'temple', num:'新26番', name:'浄楽寺', addr:'横須賀市芦名２丁目３０−５', stop:'浄楽寺バス停', note:'⚠バス本数少。時刻確認必須', fare:270},
+     {type:'temple', num:'新26番', name:'浄楽寺', addr:'横須賀市芦名２丁目３０−５', stop:'浄楽寺バス停', note:'阿弥陀三尊の観音様、拝観料600円必要', fare:270},
 
     {type:'seg', mode:'バス',   from:'久留和　バス停',  dep:0.63194, to:'浄楽寺　バス停　横須賀',        arr:0.63681},
 
@@ -972,7 +971,7 @@ const panelsEl = document.getElementById('panels');
 
           　<span style="font-size:.72rem;color:#666">${row.addr}</span>
 
-          　<span class="note-cell ${isWarn?'warn-txt':''}">${row.note}</span>
+           ${note ? `<span class="note-cell ${isWarn?'warn-txt':''}">${note}</span>` : ''}
 
         </td>
 
