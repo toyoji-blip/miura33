@@ -1,119 +1,1047 @@
 <!DOCTYPE html>
+
 <html lang="ja">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>三浦三十三観音 巡礼</title>
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<title>三浦三十三観音</title>
+
 <style>
+
 :root {
-  --rust: #8B3A2A; --gold: #C4933F; --sage: #3A6B3A; --warn: #B85C00;
-  --ink: #1a1a1a; --row-odd: #fff; --row-even: #f7f3ec; --hdr-bg: #3d3228;
+
+  --rust:   #8B3A2A;
+
+  --gold:   #C4933F;
+
+  --sage:   #3A6B3A;
+
+  --warn:   #B85C00;
+
+  --ink:    #1a1a1a;
+
+  --muted:  #666;
+
+  --border: #ccc;
+
+  --row-odd:  #fff;
+
+  --row-even: #f7f3ec;
+
+  --hdr-bg:   #3d3228;
+
+  --sub-bg:   #5c4a3a;
+
+  --seg-bg:   #f0ede8;
+
 }
+
+
+
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { font-family: -apple-system, "Hiragino Sans", sans-serif; font-size: 13px; background: #e8e2d8; color: var(--ink); padding-bottom: 32px; }
-.app-bar { position: sticky; top: 0; z-index: 200; background: var(--rust); color: white; padding: 48px 16px 10px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,.3); }
-.app-bar h1 { font-size: 1rem; font-weight: 700; }
-.app-bar p { font-size: .72rem; opacity: .85; margin-top: 2px; }
-.tabs { position: sticky; top: 82px; z-index: 190; display: flex; overflow-x: auto; background: #5c2318; -webkit-overflow-scrolling: touch; }
+
+
+
+body {
+
+  font-family: -apple-system, "Hiragino Sans", sans-serif;
+
+  font-size: 13px;
+
+  background: #e8e2d8;
+
+  color: var(--ink);
+
+  padding-bottom: 32px;
+
+}
+
+
+
+/* ===== TOP HEADER ===== */
+
+.app-bar {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 200;
+
+  background: var(--rust);
+
+  color: white;
+
+  padding: 48px 16px 10px;
+
+  text-align: center;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+
+}
+
+.app-bar h1 { font-size: 1rem; font-weight: 700; letter-spacing: .1em; }
+
+.app-bar p  { font-size: .72rem; opacity: .85; margin-top: 2px; }
+
+
+
+/* ===== DAY TABS ===== */
+
+.tabs {
+
+  position: sticky;
+
+  top: 82px;
+
+  z-index: 190;
+
+  display: flex;
+
+  overflow-x: auto;
+
+  scrollbar-width: none;
+
+  background: #5c2318;
+
+}
+
 .tabs::-webkit-scrollbar { display: none; }
-.tab { flex: none; padding: 12px 16px; font-size: .75rem; font-weight: 700; color: rgba(255,255,255,0.5); white-space: nowrap; border-bottom: 3px solid transparent; cursor: pointer; }
+
+.tab {
+
+  flex: none;
+
+  padding: 9px 14px;
+
+  font-size: .75rem;
+
+  font-weight: 700;
+
+  color: rgba(255,255,255,.55);
+
+  white-space: nowrap;
+
+  border-bottom: 3px solid transparent;
+
+  cursor: pointer;
+
+  transition: all .15s;
+
+}
+
 .tab.active { color: #fff; border-bottom-color: var(--gold); }
+
+
+
+/* ===== SHEET PANEL ===== */
+
 .panel { display: none; }
+
 .panel.active { display: block; }
-.access-bar { background: #fff8ee; border-left: 4px solid var(--gold); padding: 8px 12px; font-size: .75rem; color: #5a4020; margin: 10px; border-radius: 0 6px 6px 0; line-height: 1.6; }
-.tbl-wrap { overflow-x: auto; margin: 0 10px 16px; border-radius: 8px; border: 1px solid #ccc; background: white; -webkit-overflow-scrolling: touch; }
-table { border-collapse: collapse; width: 100%; min-width: 600px; }
-thead th { background: var(--hdr-bg); color: white; font-size: .7rem; padding: 8px; text-align: center; }
-tr.temple-row { background: #e8f0e8; border-top: 2px solid #4a8a4a; }
-tr.temple-row td { padding: 8px; font-weight: 700; }
-.num-cell { background: var(--sage); color: white; padding: 2px 6px; border-radius: 4px; font-size: .7rem; margin-right: 4px; display: inline-block; }
-.num-cell.bangai { background: #8B6914; }
-tr.seg-row { border-top: 1px solid #eee; }
-tr.seg-row:nth-child(even) { background: #fafafa; }
-tr.seg-row td { padding: 6px 8px; font-size: .75rem; vertical-align: middle; }
-.mode-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 6px; border-radius: 4px; font-size: .65rem; font-weight: 700; }
-.m-bus { background: #FEF3C7; color: #92400E; }
-.m-keikyu { background: #FEE2E2; color: #991B1B; }
-.m-walk { background: #F3E8FF; color: #6B21A8; }
-.map-btn { display: inline-block; background: var(--rust); color: white; text-decoration: none; padding: 4px 8px; border-radius: 4px; font-size: .7rem; }
-.total-row td { background: #f0e8d8; font-weight: 700; padding: 10px; text-align: right; color: var(--rust); }
+
+
+
+/* ===== ACCESS INFO ===== */
+
+.access-bar {
+
+  background: #fff8ee;
+
+  border-left: 4px solid var(--gold);
+
+  padding: 8px 12px;
+
+  font-size: .75rem;
+
+  color: #5a4020;
+
+  margin: 10px 10px 6px;
+
+  border-radius: 0 6px 6px 0;
+
+  line-height: 1.6;
+
+}
+
+.access-bar .warn { color: var(--warn); font-weight: 700; }
+
+
+
+/* ===== TABLE WRAPPER ===== */
+
+.tbl-wrap {
+
+  overflow-x: auto;
+
+  margin: 0 10px 16px;
+
+  border-radius: 8px;
+
+  border: 1px solid var(--border);
+
+  box-shadow: 0 1px 6px rgba(0,0,0,.1);
+
+  -webkit-overflow-scrolling: touch;
+
+}
+
+
+
+table {
+
+  border-collapse: collapse;
+
+  width: 100%;
+
+  min-width: 620px;
+
+  background: white;
+
+}
+
+
+
+/* ===== HEADER ROWS ===== */
+
+thead tr.hdr-main th {
+
+  background: var(--hdr-bg);
+
+  color: white;
+
+  font-size: .72rem;
+
+  font-weight: 700;
+
+  padding: 7px 8px;
+
+  white-space: nowrap;
+
+  border-right: 1px solid rgba(255,255,255,.15);
+
+  text-align: center;
+
+}
+
+thead tr.hdr-main th:last-child { border-right: none; }
+
+
+
+/* ===== TEMPLE ROW ===== */
+
+tr.temple-row {
+
+  background: #e8f0e8;
+
+  border-top: 2px solid #4a8a4a;
+
+}
+
+tr.temple-row td {
+
+  padding: 7px 8px;
+
+  font-weight: 700;
+
+  font-size: .82rem;
+
+  vertical-align: middle;
+
+  border-right: 1px solid #c8d8c8;
+
+}
+
+tr.temple-row .num-cell {
+
+  background: var(--sage);
+
+  color: white;
+
+  text-align: center;
+
+  white-space: nowrap;
+
+  min-width: 44px;
+
+  border-radius: 4px;
+
+  padding: 4px 6px;
+
+  font-size: .75rem;
+
+  display: inline-block;
+
+}
+
+tr.temple-row .num-cell.bangai { background: #8B6914; }
+
+tr.temple-row .num-cell.warn   { background: var(--warn); }
+
+tr.temple-row .note-cell { font-size: .72rem; font-weight: 400; color: #444; }
+
+tr.temple-row .warn-txt { color: var(--warn); font-weight: 700; }
+
+tr.temple-row .fare-cell {
+
+  text-align: right;
+
+  color: var(--rust);
+
+  font-size: .8rem;
+
+  white-space: nowrap;
+
+}
+
+
+
+/* ===== SEGMENT ROW ===== */
+
+tr.seg-row {
+
+  background: var(--row-odd);
+
+  border-top: 1px solid #e0d8cc;
+
+}
+
+tr.seg-row:nth-child(even) { background: var(--row-even); }
+
+tr.seg-row td {
+
+  padding: 5px 8px;
+
+  font-size: .75rem;
+
+  vertical-align: middle;
+
+  border-right: 1px solid #e0d8cc;
+
+  white-space: nowrap;
+
+}
+
+tr.seg-row td:last-child { border-right: none; }
+
+
+
+/* 手段バッジ */
+
+.mode-badge {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 3px;
+
+  padding: 2px 8px;
+
+  border-radius: 4px;
+
+  font-size: .7rem;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+}
+
+.m-chikatetsu { background: #DBEAFE; color: #1E40AF; }
+
+.m-keikyu     { background: #FEE2E2; color: #991B1B; }
+
+.m-jr         { background: #DCFCE7; color: #166534; }
+
+.m-bus        { background: #FEF3C7; color: #92400E; }
+
+.m-walk       { background: #F3E8FF; color: #6B21A8; }
+
+
+
+/* 時刻 */
+
+.time-cell { color: #444; font-size: .72rem; text-align: center; }
+
+
+
+/* 地名 */
+
+.place-cell { color: var(--ink); font-size: .78rem; }
+
+
+
+/* マップボタン */
+
+.map-btn {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: var(--rust);
+
+  color: white;
+
+  text-decoration: none;
+
+  border-radius: 6px;
+
+  padding: 5px 10px;
+
+  font-size: .72rem;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  touch-action: manipulation;
+
+  min-height: 32px;
+
+  gap: 3px;
+
+}
+
+.map-btn:active { opacity: .7; }
+
+.map-btn.walk { background: #7B1FA2; }
+
+
+
+/* ===== NOTE ROW ===== */
+
+tr.note-row td {
+
+  background: #fffbf0;
+
+  color: #7a5c20;
+
+  font-size: .7rem;
+
+  padding: 6px 10px;
+
+  font-style: italic;
+
+  border-top: 1px solid #e8dcc8;
+
+}
+
+
+
+/* ===== TOTAL ROW ===== */
+
+tr.total-row td {
+
+  background: #f0e8d8;
+
+  font-weight: 700;
+
+  font-size: .8rem;
+
+  padding: 7px 10px;
+
+  border-top: 2px solid #c8b090;
+
+  text-align: right;
+
+  color: var(--rust);
+
+}
+
+
+
+/* col widths */
+
+.col-mode  { width: 72px; }
+
+.col-from  { min-width: 80px; }
+
+.col-dep   { width: 52px; }
+
+.col-to    { min-width: 80px; }
+
+.col-arr   { width: 52px; }
+
+.col-map   { width: 72px; }
+
 </style>
+
 </head>
+
 <body>
+
+
+
 <div class="app-bar">
-  <h1>三浦三十三観音 巡礼行程</h1>
-  <p>蓮根駅発 / 全4日間行程管理</p>
+
+  <h1>三浦三十三観音　巡礼行程</h1>
+
+  <p>蓮根駅発 ／ Google Maps ナビ付き</p>
+
 </div>
-<div class="tabs" id="tabMenu"></div>
-<div id="panelContent"></div>
+
+<div class="tabs" id="tabs"></div>
+
+<div id="panels"></div>
+
+
 
 <script>
-const DAYS = [
-  { label: '浦賀・久里浜', title: '1日目：横須賀中部・林・長井', access: '蓮根駅→追浜駅起点', rows: [
-    {type:'temple', num:'22番', name:'観音寺', addr:'横須賀市追浜東町', stop:'追浜駅徒歩', fare:900},
-    {type:'seg', mode:'京急', from:'蓮根駅', dep:0.2847, to:'追浜駅', arr:0.3472},
-    {type:'seg', mode:'徒歩', from:'追浜駅', dep:0.3472, to:'観音寺', arr:0.3631}
-  ]},
-  { label: '葉山・秋谷', title: '2日目：逗子・葉山・秋谷', access: '蓮根駅→逗子葉山駅起点', rows: [
-    {type:'temple', num:'23番', name:'観蔵院', addr:'逗子市桜山', stop:'逗子葉山駅', fare:1190},
-    {type:'seg', mode:'京急', from:'蓮根駅', dep:0.2847, to:'逗子葉山駅', arr:0.3527}
-  ]},
-  { label: '三浦海岸', title: '3日目：野比・久里浜・浦賀', access: '蓮根駅→浦賀駅・野比駅', rows: [
-    {type:'temple', num:'11番', name:'称名寺', addr:'横須賀市野比', stop:'YRP野比駅', fare:360},
-    {type:'seg', mode:'京急', from:'蓮根駅', dep:0.425, to:'YRP野比駅', arr:0.4333}
-  ]},
-  { label: '三崎口・結願', title: '4日目：三崎口エリア（結願）', access: '蓮根駅→三崎口駅起点', rows: [
-    {type:'temple', num:'14番', name:'妙音寺', addr:'三浦市初声町', stop:'三崎口駅徒歩', fare:0},
-    {type:'seg', mode:'地下鉄', from:'蓮根駅', dep:0.2715, to:'三崎口駅', arr:0.3548}
-  ]}
-];
 
-function formatTime(v) {
+// ===== 時刻変換 =====
+
+function t(v) {
+
+  if (!v && v !== 0) return '';
+
+  if (typeof v === 'string') return v.replace(';',':');
+
   const m = Math.round(v * 1440);
+
   return String(Math.floor(m/60)).padStart(2,'0') + ':' + String(m%60).padStart(2,'0');
+
 }
 
-const menu = document.getElementById('tabMenu');
-const content = document.getElementById('panelContent');
 
-DAYS.forEach((day, idx) => {
-  const btn = document.createElement('div');
-  btn.className = 'tab' + (idx === 0 ? ' active' : '');
-  btn.textContent = day.label;
-  btn.onclick = () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('day-' + idx).classList.add('active');
+
+// ===== Google Maps URL =====
+
+function gm(from, to, mode) {
+
+  const tm = (mode === '徒歩') ? 'walking' : 'transit';
+
+  return 'https://www.google.com/maps/dir/?api=1'
+
+    + '&origin='      + encodeURIComponent(from)
+
+    + '&destination=' + encodeURIComponent(to)
+
+    + '&travelmode='  + tm;
+
+}
+
+
+
+// ===== 手段スタイル =====
+
+const modeStyle = {
+
+  '地下鉄': {cls:'m-chikatetsu', icon:'🚇'},
+
+  '京急':   {cls:'m-keikyu',     icon:'🚃'},
+
+  'JR':     {cls:'m-jr',         icon:'🚋'},
+
+  'バス':   {cls:'m-bus',        icon:'🚌'},
+
+  '徒歩':   {cls:'m-walk',       icon:'🚶'},
+
+};
+
+
+
+// ===== データ =====
+
+const DAYS = [
+
+{
+
+  label:'三崎口・結願', title:'三崎口エリア（半島南端）',
+
+  access:'蓮根駅 → 品川 → 京急三崎口駅　※三崎口駅が起点',
+
+  note:'※33番→番外の順が巡礼の慣わし。初日最後に三崎口駅付近で結願・番外と続けると効率的',
+
+  rows:[
+
+    {type:'temple', num:'14番', name:'妙音寺', addr:'三浦市初声町下宮田', stop:'三崎口駅から徒歩約10分', note:'★駅到着後まず徒歩参拝。三崎口駅至近', fare:0},
+
+    {type:'seg', mode:'地下鉄', from:'蓮根駅 都営三田線 板橋区',    dep:0.27153, to:'三崎口駅',   arr:0.35486},
+
+    {type:'seg', mode:'徒歩',   from:'三崎口駅',  dep:0.27153, to:'妙音寺　三浦市',   arr:0.37014},
+
+    {type:'temple', num:'6番', name:'福泉寺（観音堂）', addr:'三浦市南下浦町松輪', stop:'松輪バス停', note:'剣崎灯台近く', fare:280},
+
+    {type:'seg', mode:'徒歩', from:'妙音寺　三浦市',   dep:0.38750, to:'琴音　バス停',                arr:0.40347},
+
+    {type:'seg', mode:'バス',   from:'琴音　バス停',     dep:0.40347, to:'松輪(バス停) 三浦市南下浦町松輪',              arr:0.41250},
+
+    {type:'seg', mode:'徒歩', from:'松輪(バス停) 三浦市南下浦町松輪市',     dep:0.41250, to:'福泉寺（観音堂）三浦市',   arr:0.42361},
+
+    {type:'temple', num:'5番', name:'海応寺', addr:'三浦市南下浦町毘沙門', stop:'毘沙門バス停', note:'⚠バス本数少。時刻確認必須。最南東端', fare:260},
+
+    {type:'seg', mode:'徒歩', from:'福泉寺（観音堂）三浦市', dep:0.44097, to:'松輪 (バス停) 三浦市南下浦町松輪',       arr:0.45278},
+
+    {type:'seg', mode:'バス',   from:'松輪　(バス停) 三浦市南下浦町松輪',    dep:0.45278, to:'大乗　バス停　三浦市',              arr:0.46111},
+
+    {type:'seg', mode:'徒歩', from:'大乗　バス停 三浦市',     dep:0.46111, to:'海応寺　三浦市',            arr:0.46528},
+
+    {type:'temple', num:'4番', name:'大椿寺', addr:'三浦市向ヶ崎', stop:'向ヶ崎バス停', note:'地図最南端エリア。城ヶ島口方面', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'海応寺　三浦市',  dep:0.47569, to:'大椿寺　三浦市',            arr:0.50556},
+
+    {type:'temple', num:'1番', name:'音岸寺', addr:'三浦市三崎町', stop:'三崎港バス停', note:'三崎港周辺', fare:220},
+
+    {type:'seg', mode:'徒歩', from:'大椿寺　三浦市',  dep:0.54236, to:'椿の御所　バス停　三浦市',          arr:0.54514},
+
+    {type:'seg', mode:'バス',   from:'椿の御所　バス停　三浦市', dep:0.54514, to:'三崎港　バス停',          arr:0.54861},
+
+    {type:'seg', mode:'徒歩', from:'三崎港　バス停',  dep:0.54861, to:'音岸寺　三浦市',            arr:0.55139},
+
+    {type:'temple', num:'2番', name:'見桃寺', addr:'三浦市白石町', stop:'白石バス停', note:'音岸寺から徒歩10〜15分', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'音岸寺　三浦市',  dep:0.56528, to:'見桃寺　三浦市',            arr:null},
+
+    {type:'temple', num:'3番', name:'円通山 観音堂', addr:'三浦市向ケ崎町11-1', stop:'原バス停', note:'見桃寺から移動', fare:240},
+
+    {type:'seg', mode:'徒歩', from:'見桃寺　三浦市',  dep:0.58125, to:'三崎港　バス停',            arr:0.58750},
+
+    {type:'seg', mode:'バス',   from:'三崎港　バス停',  dep:0.58750, to:'油壺入口(バス停)',        arr:0.59167},
+
+    {type:'seg', mode:'徒歩', from:'油壺入口(バス停)', dep:0.59167, to:'観音堂（蓮乗軒）三浦市', arr:0.59444},
+
+    {type:'temple', num:'33番', name:'心光寺（観音堂）', addr:'三浦市三崎町諸磯', stop:'諸磯バス停', note:'★結願所。必ず最後に参拝', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'観音堂（蓮乗軒）三浦市',  dep:0.60417, to:'心光寺（観音堂）三浦市',  arr:0.60903},
+
+    {type:'temple', num:'32番', name:'海蔵寺', addr:'三浦市三崎町小網代', stop:'小網代バス停', note:'小網代湾沿い', fare:240},
+
+    {type:'seg', mode:'徒歩', from:'心光寺（観音堂）三浦市',  dep:0.62708, to:'35.153588439840604, 139.63082330502687',          arr:0.63194},
+
+    {type:'seg', mode:'バス',   from:'35.153588439840604,139.63082330502687', dep:0.63194, to:'シーボニア入口　バス停',  arr:0.63333},
+
+    {type:'seg', mode:'徒歩', from:'シーボニア入口　バス停', dep:0.63333, to:'海蔵寺　三浦市',     arr:0.63819},
+
+    {type:'temple', num:'番外', name:'お手引観音（光照寺）', addr:'三浦市初声町三戸', stop:'三戸バス停', note:'慣わしでは結願後。帰路に三崎口駅近くで参拝が便利', fare:350},
+
+    {type:'seg', mode:'徒歩', from:'海蔵寺　三浦市',  dep:0.64653, to:'シーボニア入口　バス停',    arr:0.65278},
+
+    {type:'seg', mode:'バス',   from:'シーボニア入口　バス停', dep:0.65278, to:'三戸入口　バス停　三浦市', arr:0.66042},
+
+    {type:'seg', mode:'徒歩', from:'三戸入口　バス停　三浦市', dep:0.66042, to:'光照寺　三浦市',           arr:0.67500},
+
+  ]
+
+},
+
+{
+
+  label:'三浦海岸東南', title:'野比・久里浜・浦賀エリア',
+
+  access:'蓮根駅 → 泉岳寺乗換 → 浦賀駅（京急）',
+
+  note:'※13番東福寺と17番慈眼院は地図上の位置を確認し、当日の動線に合わせて順序調整を推奨',
+
+  rows:[
+
+    {type:'temple', num:'11番', name:'称名寺', addr:'横須賀市野比1丁目', stop:'YRP野比駅から徒歩', note:'三浦海岸から1駅。野比地区', fare:360},
+
+    {type:'seg', mode:'京急', from:'都営地下鉄蓮根駅',  dep:0.42500, to:'YRP野比駅',          arr:0.43333},
+
+    {type:'seg', mode:'徒歩', from:'野比通り', dep:0.45417, to:'称名寺　野比',           arr:0.45694},
+
+    {type:'temple', num:'10番', name:'三樹院', addr:'三浦市南下浦町上宮田', stop:'三浦海岸駅付近', note:'三浦海岸駅から徒歩圏', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'称名寺　野比',  dep:0.47639, to:'YRP野比',           arr:0.48264},
+
+    {type:'seg', mode:'京急',   from:'YRP野比', dep:0.51806, to:'三浦海岸駅',        arr:0.52153},
+
+    {type:'seg', mode:'徒歩', from:'三浦海岸駅', dep:0.52153, to:'三樹院',           arr:0.52986},
+
+    {type:'temple', num:'9番', name:'法昌寺', addr:'三浦市南下浦町菊名', stop:'菊名バス停', note:'菊名地区', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'三樹院',  dep:0.54861, to:'法昌院　三浦市南下浦町',            arr:0.57014},
+
+    {type:'temple', num:'8番', name:'清伝寺', addr:'三浦市南下浦町金田', stop:'金田バス停', note:'7番から徒歩圏内', fare:240},
+
+    {type:'seg', mode:'徒歩', from:'法昌寺　三浦市南下浦町',  dep:0.59444, to:'白山神社 (バス停)三浦',          arr:0.59722},
+
+    {type:'seg', mode:'バス',   from:'白山神社 (バス停) 三浦市', dep:0.59861, to:'金田 (バス停)三浦市',            arr:0.60139},
+
+    {type:'seg', mode:'徒歩', from:'金田 (バス停)三浦市',    dep:0.60139, to:'清伝寺　三浦市',            arr:0.60486},
+
+    {type:'temple', num:'7番', name:'福寿寺', addr:'三浦市南下浦町金田', stop:'金田バス停', note:'清伝寺から徒歩圏', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'清伝寺　三浦市',  dep:0.61458, to:'福寿寺　三浦市',            arr:0.62847},
+
+    {type:'temple', num:'16番', name:'等覚寺', addr:'横須賀市久村', stop:'久村バス停', note:'久里浜港の北西', fare:490},
+
+    {type:'seg', mode:'徒歩', from:'福寿寺　三浦市',  dep:0.63750, to:'岩浦　バス停　三浦市',              arr:0.64236},
+
+    {type:'seg', mode:'バス',   from:'岩浦　バス停　三浦市',   dep:0.64236, to:'三浦海岸駅',         arr:0.65278},
+
+    {type:'seg', mode:'京急',   from:'三浦海岸駅', dep:0.66042, to:'京急久里浜',     arr:0.66667},
+
+    {type:'seg', mode:'京急',   from:'京急久里浜', dep:0.66667, to:'等覚寺　横須賀市',       arr:0.67917},
+
+    {type:'temple', num:'17番', name:'慈眼院', addr:'横須賀市佐原5丁目', stop:'佐原バス停', note:'浦賀の北。佐原エリア', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'等覚寺　横須賀市',  dep:0.68750, to:'慈眼院　横須賀市',            arr:0.69236},
+
+    {type:'temple', num:'12番', name:'伝福寺（西生院）', addr:'横須賀市久里浜8丁目', stop:'京急久里浜駅から徒歩', note:'久里浜駅周辺', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'慈眼院　横須賀市',  dep:0.70139, to:'傳福寺　横須賀市',            arr:0.72569},
+
+  ]
+
+},
+
+{
+
+  label:'浦賀・久里浜', title:'横須賀市中部・林・長井',
+
+  access:'蓮根駅 → 泉岳寺乗換 → 京急追浜駅',
+
+  note:'※4日目は追浜から南へ。31番長慶寺が最遠地点。⚠帰路バスを必ず逆算すること',
+
+  rows:[
+
+    {type:'temple', num:'22番', name:'観音寺（妙智院）', addr:'横須賀市追浜東町1丁目', stop:'京急追浜駅から徒歩', note:'追浜駅至近。この日の最北起点', fare:900},
+
+    {type:'seg', mode:'京急',   from:'蓮根駅 都営三田線 板橋区',   dep:0.28472, to:'追浜',              arr:0.34722},
+
+    {type:'seg', mode:'徒歩', from:'追浜',    dep:0.34722, to:'観音寺　横須賀市追浜',            arr:0.36319},
+
+    {type:'temple', num:'21番', name:'景徳寺', addr:'横須賀市船越1丁目', stop:'船越バス停', note:'田浦方面。横須賀中央から北', fare:240},
+
+    {type:'seg', mode:'徒歩', from:'観音寺 横須賀市追浜東町1丁目',  dep:0.40278, to:'榎戸（バス）横須賀',        arr:0.40764},
+
+    {type:'seg', mode:'バス',   from:'榎戸（バス）横須賀', dep:0.40764, to:'北部共済病院', arr:0.41042},
+
+    {type:'temple', num:'20番', name:'浄林寺（宝寿院）', addr:'横須賀市馬堀町4丁目', stop:'京急馬堀海岸駅近', note:'馬堀海岸駅から徒歩圏', fare:740},
+
+    {type:'seg', mode:'バス',   from:'北部共済病院', dep:0.42917, to:'米ヶ浜 （バス停)',     arr:0.44375},
+
+    {type:'seg', mode:'バス',   from:'米ヶ浜 （バス停)',  dep:0.44792, to:'馬堀中学',        arr:0.46111},
+
+    {type:'temple', num:'18番', name:'満願寺', addr:'横須賀市岩戸1丁目', stop:'岩戸バス停', note:'佐原ICの北西。岩戸地区', fare:640},
+
+    {type:'seg', mode:'徒歩', from:'浄林寺 馬堀',  dep:0.48125, to:'馬堀海岸駅',          arr:0.48958},
+
+    {type:'temple', num:'13番', name:'東福寺', addr:'横須賀市西浦賀町2丁目', stop:'浦賀駅から徒歩', note:'浦賀駅周辺。半島東側', fare:1260},
+
+    {type:'seg', mode:'京急', from:'馬堀公園駅',   dep:0.28472, to:'浦賀',              arr:0.36528},
+
+    {type:'seg', mode:'バス',   from:'浦賀',   dep:0.37014, to:'紺屋町 （バス停）西浦賀',            arr:0.37222},
+
+    {type:'seg', mode:'徒歩', from:'紺屋町 （バス停）西浦賀',  dep:0.37222, to:'東福寺　西浦賀',            arr:0.37361},
+
+    {type:'temple', num:'15番', name:'真福寺', addr:'横須賀市吉井1丁目', stop:'吉井バス停', note:'マリア観音で有名。吉井地区', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'東福寺　西浦賀',  dep:0.38889, to:'真福寺　横須賀市吉井',            arr:0.40694},
+
+    {type:'seg', mode:'京急',   from:'馬堀海岸駅', dep:0.48958, to:'横須賀中央',     arr:0.49722},
+
+    {type:'seg', mode:'京急',   from:'横須賀中央', dep:0.50417, to:'北久里浜',     arr:0.50972},
+
+    {type:'seg', mode:'バス',   from:'北久里浜', dep:0.55556, to:'岩戸（バス）　横須賀市',           arr:0.55972},
+
+    {type:'seg', mode:'徒歩', from:'岩戸（バス）　横須賀市',    dep:0.55972, to:'満願寺　横須賀市岩戸',            arr:0.56319},
+
+    {type:'temple', num:'19番', name:'清雲寺', addr:'横須賀市大矢部5丁目', stop:'大矢部バス停', note:'滝見観音。大矢部地区', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'満願寺　横須賀市岩戸',  dep:0.58333, to:'清雲寺　横須賀市',            arr:0.59792},
+
+  ]
+
+},
+
+{
+
+  label:'葉山・秋谷', title:'逗子・葉山・秋谷（最終日）',
+
+  access:'蓮根駅 → 泉岳寺乗換 → 逗子葉山駅（京急）',
+
+  note:'⚠ 秋谷以南のバスが非常に少ない。午前中に秋谷入りし、帰路バスを逆算すること',
+
+  rows:[
+
+    {type:'temple', num:'23番', name:'観蔵院', addr:'逗子市桜山5丁目', stop:'逗子駅 / 神武寺駅', note:'逗子駅からバスまたは徒歩', fare:1190},
+
+    {type:'seg', mode:'京急',   from:'蓮根駅 都営三田線 板橋区',   dep:0.28472, to:'逗子葉山駅',         arr:0.35278},
+
+    {type:'seg', mode:'バス',   from:'逗子葉山駅', dep:0.36042, to:'桜山四丁目　バス停',     arr:0.36389},
+
+    {type:'seg', mode:'徒歩', from:'桜山四丁目　バス停', dep:0.36389, to:'観蔵院 逗子市',         arr:0.36597},
+
+    {type:'temple', num:'24番', name:'海宝寺', addr:'葉山町堀之内', stop:'堀之内バス停', note:'葉山エリア。逗子から南下', fare:490},
+
+    {type:'seg', mode:'徒歩', from:'観蔵院　逗子市',  dep:0.39722, to:'逗子警察署前',      arr:0.40139},
+
+    {type:'seg', mode:'バス',   from:'逗子警察署前', dep:0.40139, to:'逗子駅',     arr:0.40833},
+
+    {type:'seg', mode:'バス',   from:'逗子駅',  dep:0.41667, to:'鐙摺　バス停　葉山',            arr:0.42222},
+
+    {type:'seg', mode:'徒歩', from:'鐙摺　バス停　葉山',    dep:0.42222, to:'海宝寺　葉山',            arr:0.42361},
+
+    {type:'temple', num:'25番', name:'玉蔵院　葉山', addr:'葉山町一色', stop:'一色バス停', note:'葉山御用邸近く。海岸沿い', fare:280},
+
+    {type:'seg', mode:'徒歩', from:'海宝寺　葉山',  dep:0.44236, to:'葉山マリーナ　バス停',      arr:0.44375},
+
+    {type:'seg', mode:'バス',   from:'葉山マリーナ　バス停', dep:0.44375, to:'一色海岸　バス停',   arr:0.45139},
+
+    {type:'seg', mode:'徒歩', from:'一色海岸　バス停', dep:0.45139, to:'玉蔵院　葉山',           arr:0.45417},
+
+    {type:'temple', num:'旧26番', name:'（脱退）観正院', addr:'葉山町上山口', stop:'上山口バス停', fare:240},
+
+    {type:'seg', mode:'徒歩', from:'玉蔵院　葉山',  dep:0.48125, to:'葉山大道　バス停',          arr:0.48681},
+
+    {type:'seg', mode:'バス',   from:'葉山大道　バス停', dep:0.48681, to:'新沢　バス停',       arr:0.49028},
+
+    {type:'seg', mode:'徒歩', from:'新沢　バス停', dep:0.49028, to:'観正院　葉山',           arr:0.49583},
+
+    {type:'temple', num:'27番', name:'円乗院（普門寺）', addr:'横須賀市秋谷', stop:'秋谷バス停', fare:270},
+
+    {type:'seg', mode:'バス',   from:'葉山大道　バス停', dep:0.57014, to:'久留和海岸　バス停',     arr:0.57569},
+
+    {type:'seg', mode:'徒歩', from:'久留和海岸　バス停', dep:0.57569, to:'円乗院　横須賀市秋谷',         arr:0.57639},
+
+    {type:'seg', mode:'徒歩', from:'円乗院　横須賀市秋谷',  dep:0.59722, to:'関根御滝　横須賀市',          arr:0.60764},
+
+    {type:'seg', mode:'徒歩', from:'関根御滝　横須賀市', dep:0.61806, to:'久留和　バス停',           arr:0.63194},
+
+     {type:'temple', num:'新26番', name:'浄楽寺', addr:'横須賀市芦名２丁目３０−５', stop:'浄楽寺バス停', note:'⚠バス本数少。時刻確認必須', fare:270},
+
+    {type:'seg', mode:'バス',   from:'久留和　バス停',  dep:0.63194, to:'浄楽寺　バス停　横須賀',        arr:0.63681},
+
+    {type:'temple', num:'29番', name:'無量寺（長寿院）', addr:'横須賀市長坂4丁目', stop:'長坂バス停', note:'佐島から南下。長坂地区', fare:0},
+
+    {type:'seg', mode:'バス',   from:'浄楽寺　バス停',  dep:0.63194, to:'佐島入口　バス停　横須賀',        arr:0.63681},
+
+    {type:'seg', mode:'徒歩', from:'佐島入口　バス停', dep:0.63681, to:'無量寺（長寿院）横須賀市',           arr:0.64792},
+
+    {type:'temple', num:'28番', name:'専福寺', addr:'横須賀市佐島1丁目', stop:'佐島バス停', note:'⚠秋谷〜佐島間はバス少', fare:240},
+
+    {type:'seg', mode:'徒歩', from:'佐島入口　バス停', dep:0.63681, to:'専福寺　横須賀市佐島',           arr:0.64792},
+
+    {type:'temple', num:'30番', name:'正住寺（心浄院）', addr:'横須賀市林5丁目', stop:'林バス停', note:'長坂から南下。林地区', fare:290},
+
+    {type:'seg', mode:'バス',   from:'佐島一丁目　バス停', dep:0.62708, to:'林四つ角',       arr:0.63611},
+
+    {type:'seg', mode:'徒歩', from:'林四つ角', dep:0.63611, to:'正住寺　横須賀市林',           arr:0.63819},
+
+    {type:'temple', num:'31番', name:'長慶寺', addr:'横須賀市長井6丁目', stop:'長井バス停', note:'⚠終点。帰路バス時刻を必ず確認。最南端で折返し', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'正住寺　横須賀市林',  dep:0.66319, to:'林四つ角',          arr:0.66597},
+
+    {type:'seg', mode:'バス',   from:'林四つ角', dep:0.66597, to:'小根岸　バス停　横須賀市',         arr:0.66875},
+
+    {type:'seg', mode:'バス',   from:'小根岸　バス停　横須賀市',  dep:0.67778, to:'荒崎',            arr:0.69028},
+
+    {type:'seg', mode:'徒歩', from:'荒崎',    dep:0.69028, to:'長慶寺　横須賀市',            arr:0.69097},
+
+  ]
+
+}
+
+];
+
+
+
+// ===== BUILD（表示順: 浦賀・久里浜, 葉山・秋谷, 三浦海岸東南, 三崎口・結願）=====
+
+const tabsEl   = document.getElementById('tabs');
+
+const panelsEl = document.getElementById('panels');
+
+
+
+[DAYS[2], DAYS[3], DAYS[1], DAYS[0]].forEach((day, di) => {
+
+  // tab
+
+  const tab = document.createElement('div');
+
+  tab.className = 'tab' + (di===0?' active':'');
+
+  tab.textContent = day.label;
+
+  tab.onclick = () => {
+
+    document.querySelectorAll('.tab').forEach((x,i)=>x.classList.toggle('active',i===di));
+
+    document.querySelectorAll('.panel').forEach((x,i)=>x.classList.toggle('active',i===di));
+
+    window.scrollTo({top:0,behavior:'smooth'});
+
   };
-  menu.appendChild(btn);
+
+  tabsEl.appendChild(tab);
+
+
+
+  // panel
 
   const panel = document.createElement('div');
-  panel.id = 'day-' + idx;
-  panel.className = 'panel' + (idx === 0 ? ' active' : '');
-  
-  let rows = '';
-  let dayFare = 0;
-  day.rows.forEach(r => {
-    if (r.type === 'temple') {
-      dayFare += r.fare;
-      rows += `<tr class="temple-row"><td colspan="4"><span class="num-cell">${r.num}</span>${r.name}</td><td>${r.stop}</td><td>¥${r.fare}</td></tr>`;
+
+  panel.className = 'panel' + (di===0?' active':'');
+
+
+
+  // access
+
+  const isWarnDay = day.note.startsWith('⚠');
+
+  panel.innerHTML = `<div class="access-bar">
+
+    <strong>${day.title}</strong><br>
+
+    📍 ${day.access}<br>
+
+    <span class="${isWarnDay?'warn':''}">${day.note}</span>
+
+  </div>`;
+
+
+
+  // table
+
+  const wrap = document.createElement('div');
+
+  wrap.className = 'tbl-wrap';
+
+
+
+  const tbl = document.createElement('table');
+
+  tbl.innerHTML = `<colgroup>
+
+    <col class="col-mode"><col class="col-from"><col class="col-dep">
+
+    <col class="col-to"><col class="col-arr"><col class="col-map">
+
+  </colgroup>
+
+  <thead>
+
+    <tr class="hdr-main">
+
+      <th>手段</th><th>出発地点</th><th>出発時刻</th>
+
+      <th>到着地点</th><th>到着時刻</th><th>地図</th>
+
+    </tr>
+
+  </thead>`;
+
+
+
+  const tbody = document.createElement('tbody');
+
+  let totalFare = 0;
+
+
+
+  day.rows.forEach(row => {
+
+    const tr = document.createElement('tr');
+
+
+
+    if (row.type === 'temple') {
+
+      totalFare += (row.fare || 0);
+
+      const isWarn = row.note.includes('⚠');
+
+      const isBangai = row.num === '番外';
+
+      const numCls = isBangai ? 'bangai' : isWarn ? 'warn' : '';
+
+      tr.className = 'temple-row';
+
+      tr.innerHTML = `
+
+        <td colspan="4">
+
+          <span class="num-cell ${numCls}">${row.num}</span>
+
+          　<strong>${row.name}</strong>
+
+          　<span style="font-size:.72rem;color:#666">${row.addr}</span>
+
+          　<span class="note-cell ${isWarn?'warn-txt':''}">${row.note}</span>
+
+        </td>
+
+        <td class="note-cell" style="white-space:nowrap">${row.stop}</td>
+
+        <td class="fare-cell">${row.fare > 0 ? '¥'+row.fare.toLocaleString() : ''}</td>`;
+
     } else {
-      rows += `<tr class="seg-row"><td><span class="mode-badge m-bus">${r.mode}</span></td><td>${r.from}</td><td>${formatTime(r.dep)}</td><td>${r.to}</td><td>${formatTime(r.arr)}</td><td><a class="map-btn" href="#">地図</a></td></tr>`;
+
+      // seg row
+
+      const ms = modeStyle[row.mode] || {cls:'m-bus',icon:'🚌'};
+
+      const isWalk = row.mode === '徒歩';
+
+      const url = gm(row.from, row.to, row.mode);
+
+      const depStr = t(row.dep);
+
+      const arrStr = t(row.arr);
+
+      tr.className = 'seg-row';
+
+      tr.innerHTML = `
+
+        <td><span class="mode-badge ${ms.cls}">${ms.icon} ${row.mode}</span></td>
+
+        <td class="place-cell">${row.from}</td>
+
+        <td class="time-cell">${depStr}</td>
+
+        <td class="place-cell">${row.to}</td>
+
+        <td class="time-cell">${arrStr}</td>
+
+        <td><a class="map-btn ${isWalk?'walk':''}" href="${url}" target="_blank">📍 地図</a></td>`;
+
     }
+
+    tbody.appendChild(tr);
+
   });
 
-  panel.innerHTML = `
-    <div class="access-bar"><strong>${day.title}</strong><br>${day.access}</div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>手段</th><th>発</th><th>時刻</th><th>着</th><th>時刻</th><th>地図</th></tr></thead>
-        <tbody>${rows}<tr class="total-row"><td colspan="6">合計 ¥${dayFare.toLocaleString()}</td></tr></tbody>
-      </table>
-    </div>`;
-  content.appendChild(panel);
+
+
+  // total fare row
+
+  const trTotal = document.createElement('tr');
+
+  trTotal.className = 'total-row';
+
+  trTotal.innerHTML = `<td colspan="6">本日の交通費合計（概算）　¥${totalFare.toLocaleString()}</td>`;
+
+  tbody.appendChild(trTotal);
+
+
+
+  tbl.appendChild(tbody);
+
+  wrap.appendChild(tbl);
+
+  panel.appendChild(wrap);
+
+  panelsEl.appendChild(panel);
+
 });
+
 </script>
+
 </body>
+
 </html>
