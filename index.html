@@ -743,7 +743,7 @@ const DAYS = [
 
     {type:'temple', num:'18番', name:'満願寺', addr:'横須賀市岩戸1丁目', stop:'岩戸バス停', note:'佐原ICの北西。岩戸地区', fare:640},
 
-    {type:'seg', mode:'徒歩',   from:'真福寺　横須賀市吉井', dep:0.48958, to:'北久里浜駅',     arr:0.49722}
+    {type:'seg', mode:'徒歩',   from:'真福寺　横須賀市吉井', dep:0.48958, to:'北久里浜駅',     arr:0.49722},
 
     {type:'seg', mode:'バス',   from:'北久里浜', dep:0.55556, to:'岩戸（バス）　横須賀市',           arr:0.55972},
 
@@ -971,7 +971,8 @@ const panelsEl = document.getElementById('panels');
 
           　<span style="font-size:.72rem;color:#666">${row.addr}</span>
 
-           <span class="note-cell ${isWarn?'warn-txt':''}">${row.note}</span>
+           // <span class="note-cell ${isWarn?'warn-txt':''}">${row.note}</span>
+           ${note ? `<span class="note-cell ${isWarn?'warn-txt':''}">${note}</span>` : ''}
 
         </td>
 
