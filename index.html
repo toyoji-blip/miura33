@@ -558,7 +558,7 @@ const DAYS = [
 
 {
 
-  label:'三崎口・結願', title:'三崎口エリア（半島南端）',
+  label:'三浦半島・三崎口・結願', title:'三浦半島、三崎口',
 
   access:'蓮根駅 → 品川 → 京急三崎口駅　※三崎口駅が起点',
 
@@ -571,6 +571,30 @@ const DAYS = [
     {type:'seg', mode:'地下鉄', from:'蓮根駅 都営三田線 板橋区',    dep:0.27153, to:'三崎口駅',   arr:0.35486},
 
     {type:'seg', mode:'徒歩',   from:'三崎口駅',  dep:0.27153, to:'妙音寺　三浦市',   arr:0.37014},
+
+    {type:'seg', mode:'バス', from:'久里浜港　バス',  dep:0.43819, to:'京急久里浜　バス',            arr:0.44861},
+
+    {type:'seg', mode:'京急',   from:'京急久里浜', dep:0.46181, to:'三浦海岸駅',        arr:0.46806},
+
+    {type:'seg', mode:'徒歩', from:'三浦海岸駅', dep:0.46806, to:'三樹院',           arr:0.47639},
+
+    {type:'temple', num:'9番', name:'法昌寺', addr:'三浦市南下浦町菊名', stop:'菊名バス停', note:'菊名地区', fare:0},
+
+    {type:'seg', mode:'バス',   from:'三浦海岸駅　バス停', dep:0.54167, to:'白山神社 (バス停) 三浦市',            arr:0.54583},
+
+    {type:'seg', mode:'徒歩', from:'白山神社 (バス停)三浦',  dep:0.54583, to:'法昌寺　三浦市南下浦町',          arr:0.54931},
+
+    {type:'temple', num:'8番', name:'清伝寺', addr:'三浦市南下浦町金田', stop:'金田バス停', note:'7番から徒歩圏内', fare:240},
+
+    {type:'seg', mode:'徒歩', from:'法昌寺　三浦市南下浦町',  dep:0.56597, to:'白山神社 (バス停)三浦',          arr:0.57014},
+
+    {type:'seg', mode:'バス',   from:'白山神社 (バス停) 三浦市', dep:0.57014, to:'金田 (バス停)三浦市',            arr:0.57361},
+
+    {type:'seg', mode:'徒歩', from:'金田 (バス停)三浦市',    dep:0.57361, to:'清伝寺　三浦市',            arr:0.57639},
+
+    {type:'temple', num:'7番', name:'福寿寺', addr:'三浦市南下浦町金田', stop:'金田バス停', note:'清伝寺から徒歩圏', fare:0},
+    
+    {type:'seg', mode:'徒歩', from:'清伝寺　三浦市',  dep:0.59375, to:'福寿寺　三浦市',            arr:0.60764},
 
     {type:'temple', num:'6番', name:'福泉寺（観音堂）', addr:'三浦市南下浦町松輪', stop:'松輪バス停', note:'剣崎灯台近く', fare:280},
 
@@ -636,67 +660,7 @@ const DAYS = [
 
 },
 
-{
 
-  label:'三浦海岸東南', title:'久里浜・三浦半島東南エリア',
-
-  access:'蓮根駅 → 泉岳寺乗換 → 京急久里浜駅（京急）',
-
-  note:'※13番東福寺と17番慈眼院は地図上の位置を確認し、当日の動線に合わせて順序調整を推奨',
-
-  rows:[
-
-    {type:'temple', num:'16番', name:'等覚寺', addr:'横須賀市久村', stop:'久村バス停', note:'久里浜港の北西', fare:1040},
-    
-    {type:'seg', mode:'地下鉄', from:'蓮根駅',  dep:0.28681, to:'京急久里浜',              arr:0.36736},
-
-    {type:'seg', mode:'徒歩',   from:'京急久里浜', dep:0.36736, to:'等覚寺　横須賀市',       arr:0.37986},
-
-    {type:'temple', num:'17番', name:'慈眼院', addr:'横須賀市佐原5丁目', stop:'佐原バス停', note:'浦賀の北。佐原エリア', fare:0},
-
-    {type:'seg', mode:'徒歩', from:'等覚寺　横須賀市',  dep:0.39236, to:'慈眼院　横須賀市',            arr:0.39722},
-
-    {type:'temple', num:'12番', name:'伝福寺（西生院）', addr:'横須賀市久里浜8丁目', stop:'京急久里浜駅から徒歩', note:'久里浜駅周辺', fare:500},
-
-    {type:'seg', mode:'徒歩', from:'慈眼院　横須賀市',  dep:0.41042, to:'茅山（バス）横須賀',            arr:0.41319},
-
-    {type:'seg', mode:'バス', from:'茅山（バス）横須賀',  dep:0.41319, to:'京急久里浜　バス',            arr:0.41528},
-
-    {type:'seg', mode:'バス', from:'京急久里浜　バス',  dep:0.42014, to:'久里浜港　バス',            arr:0.42847},
-
-    {type:'seg', mode:'徒歩', from:'久里浜港　バス',  dep:0.42847    , to:'伝福寺（西生院）横須賀',            arr:0.43056},
-
-    {type:'temple', num:'10番', name:'三樹院', addr:'三浦市南下浦町上宮田', stop:'三浦海岸駅付近', note:'三浦海岸駅から徒歩圏', fare:510},
-
-    {type:'seg', mode:'徒歩', from:'伝福寺（西生院）横須賀',  dep:0.43750    , to:'久里浜港　バス',            arr:0.43819},
-
-    {type:'seg', mode:'バス', from:'久里浜港　バス',  dep:0.43819, to:'京急久里浜　バス',            arr:0.44861},
-
-    {type:'seg', mode:'京急',   from:'京急久里浜', dep:0.46181, to:'三浦海岸駅',        arr:0.46806},
-
-    {type:'seg', mode:'徒歩', from:'三浦海岸駅', dep:0.46806, to:'三樹院',           arr:0.47639},
-
-    {type:'temple', num:'9番', name:'法昌寺', addr:'三浦市南下浦町菊名', stop:'菊名バス停', note:'菊名地区', fare:0},
-
-    {type:'seg', mode:'バス',   from:'三浦海岸駅　バス停', dep:0.54167, to:'白山神社 (バス停) 三浦市',            arr:0.54583},
-
-    {type:'seg', mode:'徒歩', from:'白山神社 (バス停)三浦',  dep:0.54583, to:'法昌寺　三浦市南下浦町',          arr:0.54931},
-
-    {type:'temple', num:'8番', name:'清伝寺', addr:'三浦市南下浦町金田', stop:'金田バス停', note:'7番から徒歩圏内', fare:240},
-
-    {type:'seg', mode:'徒歩', from:'法昌寺　三浦市南下浦町',  dep:0.56597, to:'白山神社 (バス停)三浦',          arr:0.57014},
-
-    {type:'seg', mode:'バス',   from:'白山神社 (バス停) 三浦市', dep:0.57014, to:'金田 (バス停)三浦市',            arr:0.57361},
-
-    {type:'seg', mode:'徒歩', from:'金田 (バス停)三浦市',    dep:0.57361, to:'清伝寺　三浦市',            arr:0.57639},
-
-    {type:'temple', num:'7番', name:'福寿寺', addr:'三浦市南下浦町金田', stop:'金田バス停', note:'清伝寺から徒歩圏', fare:0},
-    
-    {type:'seg', mode:'徒歩', from:'清伝寺　三浦市',  dep:0.59375, to:'福寿寺　三浦市',            arr:0.60764},
-    
-  ]
-
-},
 
 {
 
@@ -761,6 +725,26 @@ const DAYS = [
     {type:'seg', mode:'バス', from:'大矢部　バス停　横須賀',  dep:0.65278, to:'野比通り　バス停',          arr:0.66250},
 
     {type:'seg', mode:'徒歩', from:'野比通り バス停', dep:0.66250, to:'称名寺　野比',           arr:0.66458},
+    {type:'temple', num:'16番', name:'等覚寺', addr:'横須賀市久村', stop:'久村バス停', note:'久里浜港の北西', fare:1040},
+    
+    {type:'seg', mode:'地下鉄', from:'蓮根駅',  dep:0.28681, to:'京急久里浜',              arr:0.36736},
+
+    {type:'seg', mode:'徒歩',   from:'京急久里浜', dep:0.36736, to:'等覚寺　横須賀市',       arr:0.37986},
+
+    {type:'temple', num:'17番', name:'慈眼院', addr:'横須賀市佐原5丁目', stop:'佐原バス停', note:'浦賀の北。佐原エリア', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'等覚寺　横須賀市',  dep:0.39236, to:'慈眼院　横須賀市',            arr:0.39722},
+
+    {type:'temple', num:'12番', name:'伝福寺（西生院）', addr:'横須賀市久里浜8丁目', stop:'京急久里浜駅から徒歩', note:'久里浜駅周辺', fare:500},
+
+    {type:'seg', mode:'徒歩', from:'慈眼院　横須賀市',  dep:0.41042, to:'茅山（バス）横須賀',            arr:0.41319},
+
+    {type:'seg', mode:'バス', from:'茅山（バス）横須賀',  dep:0.41319, to:'京急久里浜　バス',            arr:0.41528},
+
+    {type:'seg', mode:'バス', from:'京急久里浜　バス',  dep:0.42014, to:'久里浜港　バス',            arr:0.42847},
+
+    {type:'seg', mode:'徒歩', from:'久里浜港　バス',  dep:0.42847    , to:'伝福寺（西生院）横須賀',            arr:0.43056},
+
     
   ]
 
