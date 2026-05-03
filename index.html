@@ -566,97 +566,97 @@ const DAYS = [
 
   rows:[
 
-    {type:'temple', num:'14番', name:'妙音寺', addr:'三浦市初声町下宮田', stop:'三崎口駅から徒歩約10分', note:'★駅到着後まず徒歩参拝。三崎口駅至近', fare:0},
-
-    {type:'seg', mode:'地下鉄', from:'蓮根駅 都営三田線 板橋区',    dep:'08:00', to:'三崎口駅',   arr:'09:30'},
-
-    {type:'seg', mode:'徒歩',   from:'三崎口駅',  dep:0.27153, to:'妙音寺　三浦市',   arr:0.37014},
-
-    {type:'seg', mode:'バス', from:'久里浜港　バス',  dep:0.43819, to:'京急久里浜　バス',            arr:0.44861},
-
-    {type:'seg', mode:'京急',   from:'京急久里浜', dep:0.46181, to:'三浦海岸駅',        arr:0.46806},
-
     {type:'temple', num:'9番', name:'三樹院', addr:'三浦市南下浦町上宮田', stop:'三浦海岸駅', note:'徒歩圏', fare:0},
 
-    {type:'seg', mode:'徒歩', from:'三浦海岸駅', dep:0.46806, to:'三樹院',           arr:0.47639},
+    {type:'seg', mode:'地下鉄', from:'蓮根駅 都営三田線 板橋区',    dep:'08:29', to:'三浦海岸駅',   arr:'10:41'},
 
-    {type:'temple', num:'9番', name:'法昌寺', addr:'三浦市南下浦町菊名', stop:'菊名バス停', note:'菊名地区', fare:0},
+    {type:'seg', mode:'徒歩', from:'三浦海岸駅', dep:'10:41', to:'三樹院 三浦市',           arr:'10:53'},
 
-    {type:'seg', mode:'バス',   from:'三浦海岸駅　バス停', dep:0.54167, to:'白山神社 (バス停) 三浦市',            arr:0.54583},
+    {type:'temple', num:'5番', name:'海応寺', addr:'三浦市南下浦町毘沙門', stop:'大乗 バス停', note:'⚠バス本数少。時刻確認必須。最南東端', fare:240},
 
-    {type:'seg', mode:'徒歩', from:'白山神社 (バス停)三浦',  dep:0.54583, to:'法昌寺　三浦市南下浦町',          arr:0.54931},
+    {type:'seg', mode:'徒歩', from:'三樹院　三浦市', dep:'11:30', to:'三浦海岸駅　バス停',       arr:'11:41'},
 
-    {type:'temple', num:'8番', name:'清伝寺', addr:'三浦市南下浦町金田', stop:'金田バス停', note:'7番から徒歩圏内', fare:240},
+    {type:'seg', mode:'バス',   from:'三浦海岸　(バス停) ',    dep:'12:40', to:'大乗　バス停　三浦市',              arr:'13:09'},
 
-    {type:'seg', mode:'徒歩', from:'法昌寺　三浦市南下浦町',  dep:0.56597, to:'白山神社 (バス停)三浦',          arr:0.57014},
-
-    {type:'seg', mode:'バス',   from:'白山神社 (バス停) 三浦市', dep:0.57014, to:'金田 (バス停)三浦市',            arr:0.57361},
-
-    {type:'seg', mode:'徒歩', from:'金田 (バス停)三浦市',    dep:0.57361, to:'清伝寺　三浦市',            arr:0.57639},
-
-    {type:'temple', num:'7番', name:'福寿寺', addr:'三浦市南下浦町金田', stop:'金田バス停', note:'清伝寺から徒歩圏', fare:0},
-    
-    {type:'seg', mode:'徒歩', from:'清伝寺　三浦市',  dep:0.59375, to:'福寿寺　三浦市',            arr:0.60764},
+    {type:'seg', mode:'徒歩', from:'大乗　バス停 三浦市',     dep:'13:09', to:'海応寺　三浦市',            arr:'13:15'},
 
     {type:'temple', num:'6番', name:'福泉寺（観音堂）', addr:'三浦市南下浦町松輪', stop:'松輪バス停', note:'剣崎灯台近く', fare:280},
 
-    {type:'seg', mode:'徒歩', from:'妙音寺　三浦市',   dep:0.38750, to:'琴音　バス停',                arr:0.40347},
+    {type:'seg', mode:'徒歩', from:'海応寺　三浦市',   dep:'13:53', to:'大乗　バス停',                arr:'14:01'},
 
-    {type:'seg', mode:'バス',   from:'琴音　バス停',     dep:0.40347, to:'松輪(バス停) 三浦市南下浦町松輪',              arr:0.41250},
+    {type:'seg', mode:'バス',   from:'大乗　バス停',     dep:'14:01', to:'松輪海岸 (バス停) 三浦市南下浦町松輪',              arr:'14:09'},
 
-    {type:'seg', mode:'徒歩', from:'松輪(バス停) 三浦市南下浦町松輪市',     dep:0.41250, to:'福泉寺（観音堂）三浦市',   arr:0.42361},
+    {type:'seg', mode:'徒歩', from:'松輪海岸 (バス停) 三浦市南下浦町松輪市',     dep:'14:09', to:'福泉寺（観音堂）三浦市',   arr:'14:10'},
 
-    {type:'temple', num:'5番', name:'海応寺', addr:'三浦市南下浦町毘沙門', stop:'毘沙門バス停', note:'⚠バス本数少。時刻確認必須。最南東端', fare:260},
+    {type:'temple', num:'7番', name:'福寿寺', addr:'三浦市南下浦町金田', stop:'金田バス停', note:'清伝寺から徒歩圏', fare:0},
+    
+    {type:'seg', mode:'徒歩', from:'福泉寺（観音堂）三浦市',  dept:'14:25', to:'福寿寺　三浦市',            arr:'14:52'},
 
-    {type:'seg', mode:'徒歩', from:'福泉寺（観音堂）三浦市', dep:0.44097, to:'松輪 (バス停) 三浦市南下浦町松輪',       arr:0.45278},
+    {type:'temple', num:'8番', name:'清伝寺', addr:'三浦市南下浦町金田', stop:'金田バス停', note:'7番から徒歩圏内', fare:240},
 
-    {type:'seg', mode:'バス',   from:'松輪　(バス停) 三浦市南下浦町松輪',    dep:0.45278, to:'大乗　バス停　三浦市',              arr:0.46111},
+    {type:'seg', mode:'徒歩', from:'福寿寺　三浦市',  dep:'15:23', to:'若浦 (バス停)　三浦市',          arr:'15:30'},
 
-    {type:'seg', mode:'徒歩', from:'大乗　バス停 三浦市',     dep:0.46111, to:'海応寺　三浦市',            arr:0.46528},
+    {type:'seg', mode:'バス',   from:'若浦 (バス停)　三浦市', dep:'15:30', to:'三浦霊園入口 (バス停) 三浦市',            arr:'15:31'},
 
-    {type:'temple', num:'4番', name:'大椿寺', addr:'三浦市向ヶ崎', stop:'向ヶ崎バス停', note:'地図最南端エリア。城ヶ島口方面', fare:0},
+    {type:'seg', mode:'徒歩', from:'三浦霊園入口 (バス停)三浦市',    dep:'15:31', to:'清伝寺　三浦市',            arr:'15:35'},
 
-    {type:'seg', mode:'徒歩', from:'海応寺　三浦市',  dep:0.47569, to:'大椿寺　三浦市',            arr:0.50556},
+    {type:'temple', num:'9番', name:'法昌寺', addr:'三浦市南下浦町菊名', stop:'菊名バス停', note:'菊名地区', fare:0},
 
-    {type:'temple', num:'1番', name:'音岸寺', addr:'三浦市三崎町', stop:'三崎港バス停', note:'三崎港周辺', fare:220},
+    {type:'seg', mode:'徒歩', from:'清伝寺　三浦市',    dep:'16:06', to:'三浦霊園入口 (バス停)三浦市',            arr:'16:11'},
 
-    {type:'seg', mode:'徒歩', from:'大椿寺　三浦市',  dep:0.54236, to:'椿の御所　バス停　三浦市',          arr:0.54514},
+    {type:'seg', mode:'バス',   from:'三浦霊園入口 (バス停)三浦市', dep:'16:11', to:'白山神社 (バス停) 三浦市',            arr:'16:17'},
 
-    {type:'seg', mode:'バス',   from:'椿の御所　バス停　三浦市', dep:0.54514, to:'三崎港　バス停',          arr:0.54861},
+    {type:'seg', mode:'徒歩', from:'白山神社 (バス停)三浦',  dep:'16:17', to:'法昌寺　三浦市南下浦町',          arr:'16:22'},
+  
 
-    {type:'seg', mode:'徒歩', from:'三崎港　バス停',  dep:0.54861, to:'音岸寺　三浦市',            arr:0.55139},
+    
+    {type:'temple', num:'14番', name:'妙音寺', addr:'三浦市初声町下宮田', stop:'三崎口駅から徒歩約15分', note:'★駅から参拝可能', fare:240},
+
+    {type:'seg', mode:'徒歩',   from:'民宿旅館しおさい　三浦市',  dep:'8:47', to:'上宮田　バス停　三浦市',   arr:'8:50'},
+
+    {type:'seg', mode:'バス',   from:'上宮田　バス停　三浦市',  dep:'8:50', to:'半次　バス停　三浦市',   arr:'8:54'},
+
+    {type:'seg', mode:'徒歩',   from:'半次　バス停　三浦市',  dep:'8:54', to:'妙音寺　三浦市',   arr:'9:01'},
+
+    {type:'temple', num:'4番', name:'大椿寺', addr:'三浦市向ヶ崎', stop:'向ヶ崎バス停', note:'地図最南端エリア。城ヶ島口方面', fare:400},
+
+    {type:'seg', mode:'徒歩', from:'妙音寺　三浦市',  dep:'9:22', to:'三戸入口　バス停　三浦市',            arr:'9:31'},
+
+    {type:'seg', mode:'バス', from:'三戸入口　バス停　三浦市',  dep:'9:31', to:'向ケ崎町（バス）　三浦市',            arr:'9:58'},
+
+    {type:'seg', mode:'バス', from:'向ケ崎町（バス）　三浦市',  dep:'9:58', to:'大椿寺　三浦市',            arr:'9:59'},
+
+    {type:'temple', num:'1番', name:'音岸寺', addr:'三浦市三崎町', stop:'三崎港バス停', note:'三崎港周辺', fare:0},
+
+    {type:'seg', mode:'徒歩', from:'大椿寺　三浦市',  dep:'10:20', to:'音岸寺　三浦市',          arr:'10:39'},
 
     {type:'temple', num:'2番', name:'見桃寺', addr:'三浦市白石町', stop:'白石バス停', note:'音岸寺から徒歩10〜15分', fare:0},
 
-    {type:'seg', mode:'徒歩', from:'音岸寺　三浦市',  dep:0.56528, to:'見桃寺　三浦市',            arr:null},
+    {type:'seg', mode:'徒歩', from:'音岸寺　三浦市',  dep:'10:59', to:'見桃寺　三浦市',            arr:'11:20'},
 
     {type:'temple', num:'3番', name:'円通山 観音堂', addr:'三浦市向ケ崎町11-1', stop:'原バス停', note:'見桃寺から移動', fare:240},
 
-    {type:'seg', mode:'徒歩', from:'見桃寺　三浦市',  dep:0.58125, to:'三崎港　バス停',            arr:0.58750},
+    {type:'seg', mode:'徒歩', from:'見桃寺　三浦市',  dep:'11:40', to:'三崎港　バス停',            arr:'11:50'},
 
-    {type:'seg', mode:'バス',   from:'三崎港　バス停',  dep:0.58750, to:'油壺入口(バス停)',        arr:0.59167},
+    {type:'seg', mode:'バス',   from:'三崎港　バス停',  dep:'12:57', to:'油壺入口(バス停)',        arr:'13:03'},
 
-    {type:'seg', mode:'徒歩', from:'油壺入口(バス停)', dep:0.59167, to:'観音堂（蓮乗軒）三浦市', arr:0.59444},
+    {type:'seg', mode:'徒歩', from:'油壺入口(バス停)', dep:'13:03', to:'観音堂（蓮乗軒）三浦市', arr:'13:07'},
 
-    {type:'temple', num:'33番', name:'心光寺（観音堂）', addr:'三浦市三崎町諸磯', stop:'諸磯バス停', note:'★結願所。必ず最後に参拝', fare:0},
+    {type:'temple', num:'33番', name:'心光寺（観音堂）', addr:'三浦市三崎町諸磯', stop:'諸磯バス停', note:'★結願所', fare:0},
 
-    {type:'seg', mode:'徒歩', from:'観音堂（蓮乗軒）三浦市',  dep:0.60417, to:'心光寺（観音堂）三浦市',  arr:0.60903},
+    {type:'seg', mode:'徒歩', from:'観音堂（蓮乗軒）三浦市',  dep:'13:20', to:'心光寺（観音堂）三浦市',  arr:'13:27'},
 
-    {type:'temple', num:'32番', name:'海蔵寺', addr:'三浦市三崎町小網代', stop:'小網代バス停', note:'小網代湾沿い', fare:240},
+    {type:'temple', num:'32番', name:'海蔵寺', addr:'三浦市三崎町小網代', stop:'小網代バス停', note:'小網代湾沿い', fare:0},
 
-    {type:'seg', mode:'徒歩', from:'心光寺（観音堂）三浦市',  dep:0.62708, to:'35.153588439840604, 139.63082330502687',          arr:0.63194},
+    {type:'seg', mode:'徒歩', from:'心光寺（観音堂）三浦市',  dep:'13:48', to:'海蔵寺 三浦市',          arr:'14:10'},
 
-    {type:'seg', mode:'バス',   from:'35.153588439840604,139.63082330502687', dep:0.63194, to:'シーボニア入口　バス停',  arr:0.63333},
+    {type:'temple', num:'番外', name:'お手引観音（光照寺）', addr:'三浦市初声町三戸', stop:'三戸バス停', note:'慣わしでは結願後参拝', fare:350},
 
-    {type:'seg', mode:'徒歩', from:'シーボニア入口　バス停', dep:0.63333, to:'海蔵寺　三浦市',     arr:0.63819},
+    {type:'seg', mode:'徒歩', from:'海蔵寺　三浦市',  dep:'14:36', to:'シーボニア入口　バス停',    arr:'14:45'},
 
-    {type:'temple', num:'番外', name:'お手引観音（光照寺）', addr:'三浦市初声町三戸', stop:'三戸バス停', note:'慣わしでは結願後。帰路に三崎口駅近くで参拝が便利', fare:350},
+    {type:'seg', mode:'バス',   from:'シーボニア入口　バス停', dep:'14:45', to:'三戸入口　バス停　三浦市', arr:'14:56'},
 
-    {type:'seg', mode:'徒歩', from:'海蔵寺　三浦市',  dep:0.64653, to:'シーボニア入口　バス停',    arr:0.65278},
-
-    {type:'seg', mode:'バス',   from:'シーボニア入口　バス停', dep:0.65278, to:'三戸入口　バス停　三浦市', arr:0.66042},
-
-    {type:'seg', mode:'徒歩', from:'三戸入口　バス停　三浦市', dep:0.66042, to:'光照寺　三浦市',           arr:0.67500},
+    {type:'seg', mode:'徒歩', from:'三戸入口　バス停　三浦市', dep:'14:56', to:'光照寺　三浦市',           arr:'15:16'},
 
   ]
 
